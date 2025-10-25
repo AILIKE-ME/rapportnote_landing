@@ -21,3 +21,41 @@ export const NAV_ITEMS = [
   { label: '가격', href: '/#pricing' },
   { label: '문의', href: '/contact' },
 ]
+
+/**
+ * 앱 버전
+ */
+export const APP_VERSION = '1.0.0'
+
+/**
+ * 다운로드 URL (GitHub Releases)
+ *
+ * TODO: GitHub Release를 생성한 후 실제 URL로 변경하세요.
+ *
+ * 1. GitHub 저장소에서 Release 생성
+ * 2. 빌드된 파일 업로드:
+ *    - rapportnote_frontend/rapportnote-macos-v1.0.0.dmg
+ * 3. Release URL을 아래 mac 필드에 입력
+ *
+ * 예시: https://github.com/YOUR_USERNAME/YOUR_REPO/releases/download/v1.0.0/rapportnote-macos-v1.0.0.dmg
+ */
+export const DOWNLOAD_URLS = {
+  mac: 'https://github.com/AILIKE-ME/rapportnote_landing/releases/download/v1.0.0/rapportnote-macos-v1.0.0.dmg',
+  windows: '', // Windows 버전은 준비 중
+} as const
+
+/**
+ * 플랫폼별 다운로드 파일명
+ */
+export const DOWNLOAD_FILENAMES = {
+  mac: 'rapportnote-macos-v1.0.0.dmg',
+  windows: 'rapportnote-windows.exe',
+} as const
+
+/**
+ * 플랫폼별 다운로드 가능 여부
+ */
+export const DOWNLOAD_AVAILABLE = {
+  mac: true,
+  windows: false, // Windows 버전은 준비 중
+} as const

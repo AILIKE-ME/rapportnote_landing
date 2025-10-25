@@ -2,7 +2,9 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useEffect, useState } from 'react'
+import { handleDownload as triggerDownload, type Platform } from '@/lib/utils'
+import { DOWNLOAD_URLS, DOWNLOAD_FILENAMES, APP_VERSION, DOWNLOAD_AVAILABLE } from '@/lib/constants'
 
 /**
  * CTA 섹션 컴포넌트.
@@ -12,6 +14,32 @@ import { useRef } from 'react'
 export function CTA() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const [userPlatform, setUserPlatform] = useState<Platform>('mac')
+
+  // 사용자의 OS 감지
+  useEffect(() => {
+    const platform = navigator.platform.toLowerCase()
+    if (platform.includes('win')) {
+      setUserPlatform('windows')
+    } else {
+      setUserPlatform('mac')
+    }
+  }, [])
+
+  const handleDownload = () => {
+    // 다운로드 가능 여부 확인
+    if (!DOWNLOAD_AVAILABLE[userPlatform]) {
+      alert(`${userPlatform === 'mac' ? 'macOS' : 'Windows'} 버전은 준비 중입니다.`)
+      return
+    }
+
+    triggerDownload(
+      userPlatform,
+      DOWNLOAD_URLS[userPlatform],
+      DOWNLOAD_FILENAMES[userPlatform],
+      APP_VERSION
+    )
+  }
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8" ref={ref}>
@@ -58,8 +86,8 @@ export function CTA() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-4"
             >
-              <a
-                href="#download"
+              <button
+                onClick={handleDownload}
                 className="bg-white text-amber-700 px-8 py-4 rounded-full hover:bg-warm-50 transition-all hover:scale-105 font-semibold text-lg shadow-lg flex items-center space-x-2"
               >
                 <svg
@@ -75,8 +103,10 @@ export function CTA() {
                     d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                   />
                 </svg>
-                <span>무료 다운로드</span>
-              </a>
+                <span>
+                  {userPlatform === 'mac' ? 'Mac' : 'Windows'} 다운로드
+                </span>
+              </button>
               <a
                 href="/contact"
                 className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full hover:bg-white/10 transition-all hover:scale-105 font-semibold text-lg"

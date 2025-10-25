@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { handleDownload as triggerDownload, type Platform } from '@/lib/utils'
+import { DOWNLOAD_URLS, DOWNLOAD_FILENAMES, APP_VERSION, DOWNLOAD_AVAILABLE } from '@/lib/constants'
 
 /**
  * Hero 섹션 컴포넌트.
@@ -11,9 +13,27 @@ import { useState } from 'react'
 export function Hero() {
   const [downloadStatus, setDownloadStatus] = useState<string | null>(null)
 
-  const handleDownload = (platform: 'mac' | 'windows') => {
+  const handleDownload = (platform: Platform) => {
+    // 다운로드 가능 여부 확인
+    if (!DOWNLOAD_AVAILABLE[platform]) {
+      setDownloadStatus(`${platform === 'mac' ? 'macOS' : 'Windows'} 버전은 준비 중입니다.`)
+      setTimeout(() => {
+        setDownloadStatus(null)
+      }, 3000)
+      return
+    }
+
     setDownloadStatus(`${platform === 'mac' ? 'macOS' : 'Windows'} 다운로드 시작...`)
+
     // 실제 다운로드 로직
+    triggerDownload(
+      platform,
+      DOWNLOAD_URLS[platform],
+      DOWNLOAD_FILENAMES[platform],
+      APP_VERSION
+    )
+
+    // 상태 메시지 3초 후 제거
     setTimeout(() => {
       setDownloadStatus(null)
     }, 3000)
@@ -90,12 +110,20 @@ export function Hero() {
             {/* Windows 다운로드 */}
             <button
               onClick={() => handleDownload('windows')}
-              className="group relative bg-gradient-to-r from-amber-500 to-orange-500 text-white px-8 py-4 rounded-full hover:from-amber-600 hover:to-orange-600 transition-all hover:scale-105 font-semibold text-lg shadow-lg flex items-center space-x-3"
+              disabled={!DOWNLOAD_AVAILABLE.windows}
+              className={`group relative px-8 py-4 rounded-full transition-all font-semibold text-lg shadow-lg flex items-center space-x-3 ${
+                DOWNLOAD_AVAILABLE.windows
+                  ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 hover:scale-105'
+                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              }`}
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801" />
               </svg>
-              <span>Windows 다운로드</span>
+              <span>
+                Windows 다운로드
+                {!DOWNLOAD_AVAILABLE.windows && ' (준비 중)'}
+              </span>
             </button>
           </motion.div>
 
