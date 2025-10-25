@@ -40,7 +40,7 @@ export const APP_VERSION = '1.0.0'
  * 예시: https://github.com/YOUR_USERNAME/YOUR_REPO/releases/download/v1.0.0/rapportnote-macos-v1.0.0.dmg
  */
 export const DOWNLOAD_URLS = {
-  mac: 'https://github.com/AILIKE-ME/rapportnote_landing/releases/download/v1.0.0/rapportnote-macos-v1.0.0.dmg',
+  mac: 'https://github.com/AILIKE-ME/rapportnote_landing/releases/download/v1.0.0/Rapportnote-macOS-v1.0.0.dmg',
   windows: '', // Windows 버전은 준비 중
 } as const
 
@@ -48,7 +48,7 @@ export const DOWNLOAD_URLS = {
  * 플랫폼별 다운로드 파일명
  */
 export const DOWNLOAD_FILENAMES = {
-  mac: 'rapportnote-macos-v1.0.0.dmg',
+  mac: 'Rapportnote-macOS-v1.0.0.dmg',
   windows: 'rapportnote-windows.exe',
 } as const
 
