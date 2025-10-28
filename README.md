@@ -4,544 +4,288 @@ RapportNote 서비스를 소개하는 공식 랜딩 페이지입니다.
 
 ## 기술 스택
 
-- **Framework**: Next.js 14 (App Router)
+- **Framework**: Next.js 15 (App Router)
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **UI Components**: Headless UI / Radix UI
+- **Styling**: Tailwind CSS v4
 - **Animations**: Framer Motion
 - **Forms**: React Hook Form + Zod
-- **Testing**: Jest + React Testing Library
 
-## 프로젝트 구조
+## 현재 구현된 페이지
 
-```
-rapportnote_landing/
-├── app/                          # Next.js App Router
-│   ├── layout.tsx                # 루트 레이아웃
-│   ├── page.tsx                  # 홈페이지
-│   ├── globals.css               # 전역 스타일
-│   ├── about/                    # About 페이지
-│   ├── pricing/                  # 가격 페이지
-│   └── contact/                  # 문의 페이지
-├── components/                   # 재사용 가능한 컴포넌트
-│   ├── layout/                   # 레이아웃 컴포넌트
-│   │   ├── Header.tsx
-│   │   ├── Footer.tsx
-│   │   └── Navigation.tsx
-│   ├── sections/                 # 페이지 섹션
-│   │   ├── Hero.tsx
-│   │   ├── Features.tsx
-│   │   ├── Demo.tsx
-│   │   └── CTA.tsx
-│   └── ui/                       # UI 컴포넌트
-│       ├── Button.tsx
-│       ├── Card.tsx
-│       └── Input.tsx
-├── lib/                          # 유틸리티 및 헬퍼
-│   ├── types/                    # TypeScript 타입 정의
-│   ├── utils/                    # 유틸리티 함수
-│   └── constants/                # 상수
-├── public/                       # 정적 파일
-│   ├── images/
-│   ├── fonts/
-│   └── favicon.ico
-├── styles/                       # 추가 스타일
-│   └── theme.ts                  # 테마 설정
-└── tests/                        # 테스트
-```
+- **홈페이지** (`/`): 서비스 소개 및 주요 기능
+- **문의 페이지** (`/contact`): 연락처 폼
 
-## 시작하기
+## 로컬 개발 환경
 
 ### 요구사항
 
 - Node.js 18.x 이상
-- npm 또는 yarn
+- npm (또는 yarn, pnpm)
 
-### 설치
+### 설치 및 실행
 
 ```bash
-# 프로젝트 디렉토리로 이동
+# 1. 프로젝트 디렉토리로 이동
 cd rapportnote_landing
 
-# 의존성 설치
+# 2. 의존성 설치
 npm install
-# 또는
-yarn install
-```
 
-### 환경 변수 설정
-
-`.env.example` 파일을 복사하여 `.env.local` 파일을 생성합니다:
-
-```bash
-cp .env.example .env.local
-```
-
-`.env.local` 파일을 열어 필요한 환경 변수를 설정합니다:
-
-```env
-# API 엔드포인트
-NEXT_PUBLIC_API_URL=https://api.rapportnote.com
-
-# Google Analytics
-NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
-
-# 기타 설정
-NEXT_PUBLIC_CONTACT_EMAIL=hrpark@ailike.me
-```
-
-### 개발 서버 실행
-
-```bash
+# 3. 개발 서버 실행 (포트 3000)
 npm run dev
-# 또는
-yarn dev
-```
 
-브라우저에서 [http://localhost:3000](http://localhost:3000)을 열어 확인합니다.
-
-### 빌드
-
-```bash
-# 프로덕션 빌드
-npm run build
-
-# 빌드된 앱 실행
-npm run start
-```
-
-### 테스트
-
-```bash
-# 모든 테스트 실행
-npm run test
-
-# Watch 모드로 테스트
-npm run test:watch
-
-# 커버리지 확인
-npm run test:coverage
-```
-
-### 코드 품질
-
-```bash
-# ESLint 실행
-npm run lint
-
-# Prettier로 코드 포맷팅
-npm run format
-
-# TypeScript 타입 체크
-npm run type-check
-```
-
-## 주요 기능
-
-### 1. 홈페이지 (/)
-
-- Hero 섹션: RapportNote 소개
-- Features 섹션: 주요 기능 소개
-- Demo 섹션: 서비스 데모 영상
-- CTA 섹션: 시작하기 버튼
-
-### 2. About 페이지 (/about)
-
-- 서비스 비전 및 미션
-- 팀 소개
-
-### 3. Pricing 페이지 (/pricing)
-
-- 요금제 비교
-- FAQ
-
-### 4. Contact 페이지 (/contact)
-
-- 문의 폼
-- 이메일, 전화번호 등 연락처
-
-## 컴포넌트 가이드
-
-### Button 컴포넌트
-
-```tsx
-import { Button } from '@/components/ui/Button'
-
-// 기본 사용
-<Button>Click me</Button>
-
-// Variant 및 Size
-<Button variant="primary" size="md">Primary</Button>
-<Button variant="secondary" size="lg">Secondary</Button>
-<Button variant="outline" size="sm">Outline</Button>
-
-// onClick 핸들러
-<Button onClick={() => console.log('Clicked!')}>
-  Click me
-</Button>
-
-// Disabled
-<Button disabled>Disabled</Button>
-```
-
-### Card 컴포넌트
-
-```tsx
-import { Card } from '@/components/ui/Card'
-
-<Card>
-  <h3>Title</h3>
-  <p>Content goes here</p>
-</Card>
-```
-
-### FeatureCard 컴포넌트
-
-```tsx
-import { FeatureCard } from '@/components/sections/Features'
-
-<FeatureCard
-  title="실시간 전사"
-  description="Gemini API를 통한 정확한 음성 인식"
-  icon={<MicrophoneIcon />}
-/>
-```
-
-## 스타일링 가이드
-
-### Tailwind CSS 사용
-
-```tsx
-// 기본 사용
-<div className="flex items-center justify-center h-screen bg-gray-100">
-  <h1 className="text-4xl font-bold text-blue-600">RapportNote</h1>
-</div>
-
-// cn 유틸리티로 조건부 클래스
-import { cn } from '@/lib/utils'
-
-<button
-  className={cn(
-    'px-4 py-2 rounded-lg',
-    isActive && 'bg-blue-600 text-white',
-    isDisabled && 'opacity-50 cursor-not-allowed'
-  )}
->
-  Button
-</button>
-```
-
-### 반응형 디자인
-
-```tsx
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-  {/* 모바일: 1열, 태블릿: 2열, 데스크톱: 3열 */}
-</div>
-
-<h1 className="text-2xl md:text-4xl lg:text-6xl">
-  {/* 모바일: 2xl, 태블릿: 4xl, 데스크톱: 6xl */}
-  RapportNote
-</h1>
-```
-
-## 애니메이션
-
-### Framer Motion 사용
-
-```tsx
-import { motion } from 'framer-motion'
-
-export function AnimatedSection() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <h2>Animated Content</h2>
-    </motion.div>
-  )
-}
-
-// Scroll 기반 애니메이션
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
-
-export function ScrollAnimated() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6 }}
-    >
-      <p>This animates when scrolled into view</p>
-    </motion.div>
-  )
-}
-```
-
-## 폼 처리
-
-### React Hook Form + Zod
-
-```tsx
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-
-// 스키마 정의
-const contactSchema = z.object({
-  name: z.string().min(2, '이름은 최소 2자 이상이어야 합니다'),
-  email: z.string().email('유효한 이메일을 입력해주세요'),
-  message: z.string().min(10, '메시지는 최소 10자 이상이어야 합니다'),
-})
-
-type ContactFormData = z.infer<typeof contactSchema>
-
-export function ContactForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema),
-  })
-
-  const onSubmit = (data: ContactFormData) => {
-    console.log('Form data:', data)
-    // API 호출
-  }
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <input {...register('name')} placeholder="이름" />
-        {errors.name && <p className="text-red-500">{errors.name.message}</p>}
-      </div>
-
-      <div>
-        <input {...register('email')} placeholder="이메일" type="email" />
-        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
-      </div>
-
-      <div>
-        <textarea {...register('message')} placeholder="메시지" />
-        {errors.message && <p className="text-red-500">{errors.message.message}</p>}
-      </div>
-
-      <button type="submit">제출</button>
-    </form>
-  )
-}
-```
-
-## SEO 최적화
-
-### Metadata 설정
-
-```tsx
-// app/page.tsx
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'RapportNote - 실시간 상담 전사 서비스',
-  description: 'Gemini API를 활용한 정확하고 빠른 심리상담 대화 전사',
-  keywords: ['심리상담', '전사', 'Gemini API', '실시간 녹음'],
-  openGraph: {
-    title: 'RapportNote',
-    description: '실시간 상담 전사 서비스',
-    url: 'https://rapportnote.com',
-    siteName: 'RapportNote',
-    images: [
-      {
-        url: 'https://rapportnote.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'RapportNote',
-      },
-    ],
-    locale: 'ko_KR',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'RapportNote',
-    description: '실시간 상담 전사 서비스',
-    images: ['https://rapportnote.com/twitter-image.png'],
-  },
-}
-```
-
-### sitemap.xml 생성
-
-```tsx
-// app/sitemap.ts
-import { MetadataRoute } from 'next'
-
-export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: 'https://rapportnote.com',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: 'https://rapportnote.com/about',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://rapportnote.com/pricing',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-  ]
-}
-```
-
-## 성능 최적화
-
-### 이미지 최적화
-
-```tsx
-import Image from 'next/image'
-
-// 정적 이미지
-<Image
-  src="/images/hero.png"
-  alt="Hero"
-  width={1200}
-  height={600}
-  priority // LCP 이미지
-/>
-
-// 외부 이미지
-<Image
-  src="https://example.com/image.png"
-  alt="External"
-  width={800}
-  height={400}
-  placeholder="blur"
-  blurDataURL="data:image/jpeg;base64,..."
-/>
-```
-
-### Code Splitting
-
-```tsx
-import dynamic from 'next/dynamic'
-
-// 무거운 컴포넌트는 동적 import
-const HeavyComponent = dynamic(() => import('@/components/HeavyComponent'), {
-  loading: () => <p>Loading...</p>,
-  ssr: false, // 클라이언트에서만 렌더링
-})
-```
-
-## 배포
-
-### Vercel 배포
-
-```bash
-# Vercel CLI 설치
-npm install -g vercel
-
-# 배포
-vercel
-
-# 프로덕션 배포
-vercel --prod
-```
-
-### 환경 변수 설정
-
-Vercel 대시보드에서 환경 변수를 설정합니다:
-
-- `NEXT_PUBLIC_API_URL`
-- `NEXT_PUBLIC_GA_ID`
-- `NEXT_PUBLIC_CONTACT_EMAIL`
-
-## 모니터링
-
-### Google Analytics
-
-```tsx
-// app/layout.tsx
-import Script from 'next/script'
-
-export default function RootLayout({ children }) {
-  return (
-    <html lang="ko">
-      <head>
-        <Script
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
-            `,
-          }}
-        />
-      </head>
-      <body>{children}</body>
-    </html>
-  )
-}
-```
-
-## 트러블슈팅
-
-### 빌드 에러
-
-**문제**: `Module not found` 에러
-
-**해결**:
-```bash
-# node_modules 삭제 후 재설치
-rm -rf node_modules
-npm install
-```
-
-**문제**: TypeScript 타입 에러
-
-**해결**:
-```bash
-# 타입 체크 실행
-npm run type-check
-
-# tsconfig.json 확인
-```
-
-### 개발 서버 에러
-
-**문제**: 포트 이미 사용 중
-
-**해결**:
-```bash
-# 다른 포트로 실행
+# 4. 다른 포트로 실행
 PORT=3001 npm run dev
 ```
 
-## 문서
+브라우저에서 [http://localhost:3000](http://localhost:3000) 접속
 
-- [코딩 표준](./CODING_STANDARDS.md)
-- [전체 개발 가이드](../DEVELOPMENT_GUIDE.md)
-- [공통 규칙](../CONTRIBUTING.md)
+### 타입 체크 및 코드 품질
 
-## 라이센스
+```bash
+# TypeScript 타입 체크
+npm run type-check
 
-MIT License
+# Watch 모드 (파일 변경 시 자동 체크)
+npm run type-check:watch
+
+# 코드 포맷팅
+npm run format
+```
+
+## 서버 배포 (PM2)
+
+현재 자체 서버에서 PM2를 사용하여 프로덕션 배포 중입니다.
+
+### 서버 환경 설정
+
+```bash
+# 서버에 SSH 접속
+ssh user@your-server-ip
+
+# 프로젝트 디렉토리로 이동
+cd /path/to/rapportnote/rapportnote_landing
+
+# 의존성 설치
+npm install
+
+# 프로덕션 빌드
+npm run build
+```
+
+### PM2로 실행
+
+```bash
+# PM2로 앱 시작 (프로세스 이름: rapportnote-landing)
+pm2 start npm --name "rapportnote-landing" -- start
+
+# 서버 재시작 시 자동 실행 설정
+pm2 startup
+pm2 save
+```
+
+### PM2 관리 명령어
+
+```bash
+# 프로세스 상태 확인
+pm2 status
+
+# 프로세스 리스트
+pm2 list
+
+# 앱 재시작
+pm2 restart rapportnote-landing
+
+# 앱 중지
+pm2 stop rapportnote-landing
+
+# 앱 삭제
+pm2 delete rapportnote-landing
+
+# 모든 프로세스 재시작
+pm2 restart all
+```
+
+### PM2 로그 확인
+
+```bash
+# 실시간 로그 확인
+pm2 logs rapportnote-landing
+
+# 최근 100줄 로그 확인
+pm2 logs rapportnote-landing --lines 100
+
+# 에러 로그만 확인
+pm2 logs rapportnote-landing --err
+
+# 표준 출력 로그만 확인
+pm2 logs rapportnote-landing --out
+
+# 모든 프로세스 로그
+pm2 logs
+
+# 로그 초기화
+pm2 flush
+```
+
+### PM2 모니터링
+
+```bash
+# 실시간 모니터링 대시보드 (CPU, 메모리 사용량)
+pm2 monit
+
+# 프로세스 상세 정보
+pm2 show rapportnote-landing
+
+# 메모리 사용량 확인
+pm2 list
+```
+
+### 코드 업데이트 시 배포
+
+```bash
+# 서버에 SSH 접속
+ssh user@your-server-ip
+
+# 프로젝트 디렉토리로 이동
+cd /path/to/rapportnote/rapportnote_landing
+
+# Git에서 최신 코드 pull
+git pull origin main
+
+# 의존성 업데이트 (package.json 변경 시)
+npm install
+
+# 프로덕션 빌드
+npm run build
+
+# PM2로 재시작 (무중단 재시작)
+pm2 restart rapportnote-landing
+
+# 로그 확인 (정상 시작 확인)
+pm2 logs rapportnote-landing --lines 50
+```
+
+## 문제 해결
+
+### 서버 문제
+
+#### PM2 프로세스가 시작되지 않는 경우
+
+```bash
+# PM2 상태 확인
+pm2 status
+
+# 상세 에러 로그 확인
+pm2 logs rapportnote-landing --err --lines 100
+
+# Node.js 버전 확인 (v18 이상 필요)
+node --version
+
+# 수동으로 직접 실행해보기
+cd /path/to/rapportnote/rapportnote_landing
+npm run start
+```
+
+#### 포트 충돌
+
+```bash
+# 포트 3000 사용 중인 프로세스 확인
+lsof -i :3000
+
+# 해당 프로세스 종료
+kill -9 [PID]
+
+# PM2 프로세스 완전 재시작
+pm2 delete rapportnote-landing
+pm2 start npm --name "rapportnote-landing" -- start
+```
+
+#### 빌드 실패
+
+```bash
+# node_modules 및 캐시 삭제 후 재설치
+rm -rf node_modules .next
+npm install
+npm run build
+```
+
+#### 메모리 부족
+
+```bash
+# PM2 프로세스 메모리 확인
+pm2 list
+
+# 메모리 초과 시 재시작
+pm2 restart rapportnote-landing
+
+# 서버 전체 메모리 확인
+free -h
+```
+
+### 로컬 개발 문제
+
+#### 타입 에러
+
+```bash
+# TypeScript 타입 체크
+npm run type-check
+
+# 출력 예시:
+# app/page.tsx:15:7 - error TS2322: Type 'string' is not assignable to type 'number'.
+```
+
+#### 캐시 문제
+
+```bash
+# Next.js 캐시 삭제
+rm -rf .next
+
+# 전체 재빌드
+npm run build
+```
+
+#### 포트 사용 중 (로컬)
+
+```bash
+# 다른 포트 사용
+PORT=3001 npm run dev
+
+# 프로세스 종료 (macOS/Linux)
+lsof -ti:3000 | xargs kill -9
+```
+
+## 환경 변수 (선택사항)
+
+현재는 환경 변수 없이도 실행 가능합니다. 필요 시 서버의 프로젝트 디렉토리에 `.env.local` 파일을 생성하여 설정:
+
+```bash
+# 서버에서 환경 변수 파일 생성
+cd /path/to/rapportnote/rapportnote_landing
+nano .env.local
+```
+
+```.env
+# Google Analytics (프로덕션 배포 시)
+NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+
+# API 엔드포인트 (백엔드 연동 시)
+NEXT_PUBLIC_API_URL=http://localhost:8000
+
+# 연락처 이메일
+NEXT_PUBLIC_CONTACT_EMAIL=hrpark@ailike.me
+```
+
+환경 변수 변경 후 재빌드 및 재시작 필요:
+
+```bash
+npm run build
+pm2 restart rapportnote-landing
+```
+
+## 관련 문서
+
+- **배포 가이드**: `../DEPLOYMENT.md` - 전체 배포 프로세스 (Nginx, HTTPS 설정 등)
+- **코딩 표준**: `./CODING_STANDARDS.md` - TypeScript/React 코딩 규칙
+- **개발 가이드**: `../DEVELOPMENT_GUIDE.md` - 전체 프로젝트 개발 가이드
+- **공통 규칙**: `../CONTRIBUTING.md` - 프로젝트 공통 개발 규칙
