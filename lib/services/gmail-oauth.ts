@@ -30,6 +30,18 @@ export class GmailOAuthService {
   }
 
   /**
+   * 이메일 제목을 RFC 2047 형식으로 인코딩
+   *
+   * @param subject - 인코딩할 제목
+   * @returns RFC 2047 형식으로 인코딩된 제목
+   */
+  private encodeSubject(subject: string): string {
+    // UTF-8 바이트를 Base64로 인코딩 (RFC 2047)
+    const encoded = Buffer.from(subject, 'utf-8').toString('base64')
+    return `=?UTF-8?B?${encoded}?=`
+  }
+
+  /**
    * 이메일 메시지 생성 (RFC 2822 형식)
    *
    * @param to - 수신자 이메일 주소
@@ -38,11 +50,12 @@ export class GmailOAuthService {
    * @returns Base64로 인코딩된 이메일 메시지
    */
   private createMessage(to: string, subject: string, html: string): string {
+    const encodedSubject = this.encodeSubject(subject)
     const messageParts = [
       `To: ${to}`,
       'Content-Type: text/html; charset=utf-8',
       'MIME-Version: 1.0',
-      `Subject: ${subject}`,
+      `Subject: ${encodedSubject}`,
       '',
       html,
     ]
