@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Orange app icon with a soft, tilted "R" monogram -->
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Warm orange background gradient -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1024" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF8A00"/>
+      <stop offset="100%" stop-color="#FF5E3A"/>
+    </linearGradient>
+    <!-- Subtle top glow for depth -->
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(512 260) rotate(90) scale(520 520)">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.18"/>
+      <stop offset="60%" stop-color="#FFFFFF" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Soft drop shadow for the monogram -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="10" stdDeviation="22" flood-color="#B23A10" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Rounded gradient background -->
+  <rect x="32" y="32" width="960" height="960" rx="224" fill="url(#bg)"/>
+  <rect x="32" y="32" width="960" height="960" rx="224" fill="url(#glow)"/>
+
+  <!-- Centered, tilted "R" with smooth curves -->
+  <g filter="url(#shadow)" transform="rotate(-12 512 512)">
+    <!-- The R is drawn as a single stroke path for smooth, rounded feel -->
+    <path d="M420 700
+             L420 430
+             C420 360 485 320 545 320
+             C615 320 660 370 660 420
+             C660 485 605 520 545 520
+             C505 520 462 520 420 520
+             M480 520 L690 700"
+          stroke="#FFFFFF" stroke-width="96" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+
+  <!-- Safe-area guide (hidden). Set display=block to see. -->
+  <g display="none" opacity="0.15">
+    <rect x="96" y="96" width="832" height="832" rx="192" stroke="#000" stroke-width="2" fill="none"/>
+  </g>
+</svg>

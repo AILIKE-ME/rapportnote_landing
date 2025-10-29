@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useState, useRef, useEffect } from 'react'
 import { cn } from '@/lib/utils'
-import { NAV_ITEMS } from '@/lib/constants'
+import { NAV_ITEMS, DOWNLOAD_URLS, DOWNLOAD_AVAILABLE } from '@/lib/constants'
 
 /**
  * 헤더 컴포넌트.
@@ -16,6 +16,16 @@ export function Header() {
   const [mobileDownloadDropdownOpen, setMobileDownloadDropdownOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const mobileDropdownRef = useRef<HTMLDivElement>(null)
+
+  const handleDownload = (platform: 'mac' | 'windows') => {
+    if (!DOWNLOAD_AVAILABLE[platform]) {
+      alert(`${platform === 'mac' ? 'macOS' : 'Windows'} 버전은 준비 중입니다.`)
+      return
+    }
+
+    // 실제 파일 다운로드
+    window.location.href = DOWNLOAD_URLS[platform]
+  }
 
   // 드롭다운 외부 클릭 감지
   useEffect(() => {
@@ -40,9 +50,11 @@ export function Header() {
         <div className="flex items-center justify-between h-16">
           {/* 로고 */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-amber-600 to-orange-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg font-brand">R</span>
-            </div>
+            <img
+              src="/images/logo.svg"
+              alt="RapportNote Logo"
+              className="w-10 h-10"
+            />
             <span className="text-xl font-bold text-gray-900 font-brand tracking-wide">RapportNote</span>
           </Link>
 
@@ -90,7 +102,7 @@ export function Header() {
                   <button
                     onClick={() => {
                       setDownloadDropdownOpen(false)
-                      // Mac 다운로드 로직
+                      handleDownload('mac')
                     }}
                     className="w-full px-6 py-4 text-left hover:bg-amber-50 transition-colors flex items-center space-x-3 group"
                   >
@@ -102,7 +114,7 @@ export function Header() {
                   <button
                     onClick={() => {
                       setDownloadDropdownOpen(false)
-                      // Windows 다운로드 로직
+                      handleDownload('windows')
                     }}
                     className="w-full px-6 py-4 text-left hover:bg-amber-50 transition-colors flex items-center space-x-3 group border-t border-gray-100"
                   >
@@ -190,7 +202,7 @@ export function Header() {
                     onClick={() => {
                       setMobileDownloadDropdownOpen(false)
                       setMobileMenuOpen(false)
-                      // Mac 다운로드 로직
+                      handleDownload('mac')
                     }}
                     className="w-full px-6 py-4 text-left hover:bg-amber-50 transition-colors flex items-center space-x-3 group"
                   >
@@ -203,7 +215,7 @@ export function Header() {
                     onClick={() => {
                       setMobileDownloadDropdownOpen(false)
                       setMobileMenuOpen(false)
-                      // Windows 다운로드 로직
+                      handleDownload('windows')
                     }}
                     className="w-full px-6 py-4 text-left hover:bg-amber-50 transition-colors flex items-center space-x-3 group border-t border-gray-100"
                   >
