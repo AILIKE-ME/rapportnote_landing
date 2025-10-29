@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { CONTACT_EMAIL } from '@/lib/constants'
 
 /**
@@ -14,9 +15,12 @@ export function Footer() {
           {/* 브랜드 */}
           <div className="col-span-1 md:col-span-2">
             <Link href="/" className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-amber-600 to-orange-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg font-brand">R</span>
-              </div>
+              <Image
+                src="/landing/images/logo.svg"
+                alt="RapportNote Logo"
+                width={32}
+                height={32}
+              />
               <span className="text-xl font-bold text-gray-900 font-brand tracking-wide">RapportNote</span>
             </Link>
             <p className="text-gray-600 mb-4 max-w-md">

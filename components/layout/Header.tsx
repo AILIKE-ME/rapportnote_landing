@@ -52,7 +52,7 @@ export function Header() {
           {/* 로고 */}
           <Link href="/" className="flex items-center space-x-2">
             <Image
-              src="/images/logo.svg"
+              src="/landing/images/logo.svg"
               alt="RapportNote Logo"
               width={40}
               height={40}

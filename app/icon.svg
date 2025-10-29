@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Orange app icon with a soft, tilted "R" monogram - simplified for favicon -->
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Soft drop shadow for the monogram -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="10" stdDeviation="22" flood-color="#B23A10" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Rounded solid orange background -->
+  <rect x="32" y="32" width="960" height="960" rx="224" fill="#FF7A3D"/>
+
+  <!-- Centered, tilted "R" with smooth curves -->
+  <g filter="url(#shadow)" transform="rotate(-12 512 512)">
+    <!-- The R is drawn as a single stroke path for smooth, rounded feel -->
+    <path d="M420 700
+             L420 430
+             C420 360 485 320 545 320
+             C615 320 660 370 660 420
+             C660 485 605 520 545 520
+             C505 520 462 520 420 520
+             M480 520 L690 700"
+          stroke="#FFFFFF" stroke-width="96" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+</svg>
