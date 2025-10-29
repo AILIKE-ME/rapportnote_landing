@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState, useRef, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 import { NAV_ITEMS, DOWNLOAD_URLS, DOWNLOAD_AVAILABLE } from '@/lib/constants'
@@ -50,10 +51,12 @@ export function Header() {
         <div className="flex items-center justify-between h-16">
           {/* 로고 */}
           <Link href="/" className="flex items-center space-x-2">
-            <img
+            <Image
               src="/images/logo.svg"
               alt="RapportNote Logo"
-              className="w-10 h-10"
+              width={40}
+              height={40}
+              priority
             />
             <span className="text-xl font-bold text-gray-900 font-brand tracking-wide">RapportNote</span>
           </Link>
