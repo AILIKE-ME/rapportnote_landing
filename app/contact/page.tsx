@@ -33,18 +33,33 @@ export default function ContactPage() {
   const onSubmit = async (data: ContactFormData) => {
     setSubmitStatus('submitting')
 
-    // 실제로는 API 호출
-    // await fetch('/api/contact', { method: 'POST', body: JSON.stringify(data) })
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
 
-    // Placeholder: 2초 후 성공
-    setTimeout(() => {
-      console.log('Form data:', data)
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || '문의 전송에 실패했습니다.')
+      }
+
       setSubmitStatus('success')
       reset()
 
       // 3초 후 다시 idle로
       setTimeout(() => setSubmitStatus('idle'), 3000)
-    }, 2000)
+    } catch (error) {
+      console.error('문의 전송 오류:', error)
+      setSubmitStatus('error')
+
+      // 5초 후 다시 idle로
+      setTimeout(() => setSubmitStatus('idle'), 5000)
+    }
   }
 
   return (
@@ -202,10 +217,20 @@ export default function ContactPage() {
                   {/* 성공 메시지 */}
                   {submitStatus === 'success' && (
                     <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center space-x-3">
-                      <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-6 h-6 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                       <span className="text-green-800 font-medium">메시지가 성공적으로 전송되었습니다!</span>
+                    </div>
+                  )}
+
+                  {/* 에러 메시지 */}
+                  {submitStatus === 'error' && (
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center space-x-3">
+                      <svg className="w-6 h-6 text-red-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="text-red-800 font-medium">문의 전송에 실패했습니다. 잠시 후 다시 시도해주세요.</span>
                     </div>
                   )}
                 </form>

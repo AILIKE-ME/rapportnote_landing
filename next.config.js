@@ -9,11 +9,6 @@ const nextConfig = {
       'api.rapportnote.com',
     ],
   },
-  // 환경 변수
-  env: {
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
-    NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
-  },
 }
 
 module.exports = nextConfig
