@@ -41,7 +41,7 @@ export const APP_VERSION = '1.0.0'
  */
 export const DOWNLOAD_URLS = {
   mac: 'https://github.com/AILIKE-ME/rapportnote_landing/releases/download/v1.0.0/Rapportnote-macOS-v1.0.0.dmg',
-  windows: '', // Windows 버전은 준비 중
+  windows: 'https://github.com/AILIKE-ME/rapportnote_landing/releases/download/v1.0.0/rapportnote-windows-x64.zip',
 } as const
 
 /**
@@ -49,7 +49,7 @@ export const DOWNLOAD_URLS = {
  */
 export const DOWNLOAD_FILENAMES = {
   mac: 'Rapportnote-macOS-v1.0.0.dmg',
-  windows: 'rapportnote-windows.exe',
+  windows: 'rapportnote-windows-x64.zip',
 } as const
 
 /**
@@ -57,5 +57,5 @@ export const DOWNLOAD_FILENAMES = {
  */
 export const DOWNLOAD_AVAILABLE = {
   mac: true,
-  windows: false, // Windows 버전은 준비 중
+  windows: true,
 } as const

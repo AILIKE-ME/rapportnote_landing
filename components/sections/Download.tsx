@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
+import { DOWNLOAD_URLS, DOWNLOAD_AVAILABLE } from '@/lib/constants'
 
 /**
  * Download 섹션 컴포넌트.
@@ -15,11 +16,18 @@ export function Download() {
   const [downloadStatus, setDownloadStatus] = useState<string | null>(null)
 
   const handleDownload = (platform: 'mac' | 'windows') => {
-    // 실제 다운로드 로직 (현재는 placeholder)
+    if (!DOWNLOAD_AVAILABLE[platform]) {
+      setDownloadStatus(`${platform === 'mac' ? 'macOS' : 'Windows'} 버전은 준비 중입니다.`)
+      setTimeout(() => {
+        setDownloadStatus(null)
+      }, 3000)
+      return
+    }
+
     setDownloadStatus(`${platform === 'mac' ? 'macOS' : 'Windows'} 다운로드 시작...`)
 
-    // 실제로는 파일 다운로드 URL로 이동하거나 파일을 다운로드합니다
-    // window.location.href = `/downloads/RapportNote-${platform}.dmg`
+    // 실제 파일 다운로드
+    window.location.href = DOWNLOAD_URLS[platform]
 
     setTimeout(() => {
       setDownloadStatus(null)
