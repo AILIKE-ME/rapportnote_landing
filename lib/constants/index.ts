@@ -34,13 +34,13 @@ export const APP_VERSION = '1.0.0'
  *
  * 1. GitHub 저장소에서 Release 생성
  * 2. 빌드된 파일 업로드:
- *    - rapportnote_frontend/rapportnote-macos-v1.0.0.dmg
+ *    - rapportnote_frontend/RapportNote-macOS-v1.0.0.dmg
  * 3. Release URL을 아래 mac 필드에 입력
  *
- * 예시: https://github.com/YOUR_USERNAME/YOUR_REPO/releases/download/v1.0.0/rapportnote-macos-v1.0.0.dmg
+ * 예시: https://github.com/YOUR_USERNAME/YOUR_REPO/releases/download/v1.0.0/RapportNote-macOS-v1.0.0.dmg
  */
 export const DOWNLOAD_URLS = {
-  mac: 'https://github.com/AILIKE-ME/rapportnote_landing/releases/download/v1.0.0/Rapportnote-macOS-v1.0.0.dmg',
+  mac: 'https://github.com/AILIKE-ME/rapportnote_landing/releases/download/v1.0.0/RapportNote-macOS-v1.0.0.dmg',
   windows: 'https://github.com/AILIKE-ME/rapportnote_landing/releases/download/v1.0.0/rapportnote-windows-x64.zip',
 } as const
 
@@ -48,7 +48,7 @@ export const DOWNLOAD_URLS = {
  * 플랫폼별 다운로드 파일명
  */
 export const DOWNLOAD_FILENAMES = {
-  mac: 'Rapportnote-macOS-v1.0.0.dmg',
+  mac: 'RapportNote-macOS-v1.0.0.dmg',
   windows: 'rapportnote-windows-x64.zip',
 } as const
 
