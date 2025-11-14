@@ -65,6 +65,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/privacy" className="text-gray-600 hover:text-primary-700 transition-colors">
+                  개인정보처리방침
+                </Link>
+              </li>
+              <li>
                 <a
                   href={`mailto:${CONTACT_EMAIL}`}
                   className="text-gray-600 hover:text-primary-700 transition-colors"
