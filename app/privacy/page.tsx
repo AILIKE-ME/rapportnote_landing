@@ -1,4 +1,3 @@
-import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 
 /**
@@ -7,7 +6,6 @@ import { Footer } from '@/components/layout/Footer'
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen">
-      <Header />
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h1 className="text-4xl font-bold text-gray-900 mb-8">개인정보처리방침</h1>
 
@@ -226,7 +224,7 @@ export default function PrivacyPage() {
               <ul className="space-y-2 text-gray-700">
                 <li><strong>담당자:</strong> 박하림</li>
                 <li><strong>직책:</strong> 대표이사</li>
-                <li><strong>연락처:</strong> <a href="mailto:webmaster@ailike.me" className="text-primary-600 hover:text-primary-700">webmaster@ailike.me</a></li>
+                <li><strong>연락처:</strong> <a href="mailto:hrpark@ailike.me" className="text-primary-600 hover:text-primary-700">hrpark@ailike.me</a></li>
               </ul>
             </div>
           </section>
@@ -248,7 +246,7 @@ export default function PrivacyPage() {
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">부칙</h2>
             <p className="text-gray-700">
-              이 개인정보처리방침은 2025년 1월 1일부터 적용됩니다.
+              이 개인정보처리방침은 2025년 11월 1일부터 적용됩니다.
             </p>
           </section>
         </div>
